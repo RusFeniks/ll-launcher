@@ -1,7 +1,7 @@
 # Общая информация
 
 Лаунчер для получения обновлений клиента Minecraft.\
-Разрабатывается для проекта [lost-lands.ru](lost-lands.ru)
+Разрабатывается для проекта [lost-lands.ru](https://lost-lands.ru)
 
 ## Репозиторий backend-части
 https://github.com/RusFeniks/MinecraftUpdater-ServerSide
