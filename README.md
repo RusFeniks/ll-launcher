@@ -10,10 +10,14 @@ https://github.com/RusFeniks/MinecraftUpdater-ServerSide
 
 ## Запуск в режиме разработки
 
-`npm run tauri dev`
+```
+npm run tauri dev
+```
 
 ## Сборка
 
-`npm run tauri build`
+```
+npm run tauri build
+```
 
 >Собранные файлы лежат по пути: `src-tauri/target/release/bundle`
