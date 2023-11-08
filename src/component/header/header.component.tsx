@@ -33,13 +33,19 @@ export default function Header(props: HeaderProps) {
 
   return (
     <div className={classNames(style["header"], props.className)}>
-      <Image
-        className={style["header__logotype"]}
-        src="logotype.png"
-        alt="Логотип проекта"
-        width={407}
-        height={63}
-      />
+      <div className={style['header__brand']}>
+        <Image
+          className={style["header__icon"]}
+          src="icon32.png"
+          alt="Иконка проекта"
+          width={32}
+          height={32}
+        />
+        <div>
+          <h1 className={style['header__title']}>Lost Lands</h1>
+          <p className={style['header__description']}>Сервер Minecraft на краю света</p>
+        </div>
+      </div>
       <nav className={style["header__navigation-wrapper"]}>
         {navigationLinks.map((link) => (
           <a

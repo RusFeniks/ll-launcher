@@ -7,9 +7,30 @@
   align-items: center;
   padding: 16px;
 
-  &__logotype {
-    width: auto;
-    height: 30px;
+  &__brand {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+  }
+
+  &__icon {
+    width: 40px;
+    height: 44px;
+  }
+
+  &__title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  &__description {
+    font-size: 12px;
+    font-weight: normal;
+    margin: 0;
   }
 
   &__navigation-wrapper {
@@ -21,13 +42,14 @@
   &__navigation-link {
     text-decoration: none;
     transition: color 0.25s;
+    color: black;
 
     &:hover {
-      color: burlywood;
+      color: goldenrod;
     }
 
     &:active {
-      color: darken(burlywood, $amount: 25%);
+      color: lighten(goldenrod, $amount: 25%);
     }
   }
 }
