@@ -1,0 +1,16 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+
+    &__row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    &__controls {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+    }
+}
