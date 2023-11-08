@@ -3,8 +3,8 @@ import style from "./game-start-button.styles.module.scss";
 
 export default function GameStartButton() {
   return (
-    <div className={classNames(style["game-start-button"])}>
-        Game Start Button
-    </div>
+    <button className={classNames(style["game-start-button"])}>
+      Играть
+    </button>
   );
 }

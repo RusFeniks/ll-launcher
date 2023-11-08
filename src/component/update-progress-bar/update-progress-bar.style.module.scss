@@ -1,0 +1,9 @@
+.update-progress-bar {
+    width: 100%;
+    height: 16px;
+    background: linear-gradient(90deg, gold 0%, gold 20%, white 20%, white 100%);
+
+    &--disabled {
+        background: darken(ghostwhite, 1%);
+    }
+}

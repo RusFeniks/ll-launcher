@@ -3,8 +3,8 @@ import style from "./update-button.styles.module.scss";
 
 export default function UpdateButton() {
   return (
-    <div className={classNames(style["update-button"])}>
-        Update Button
-    </div>
+    <button className={classNames(style["update-button"])} disabled>
+      ОБНОВИТЬ
+    </button>
   );
 }

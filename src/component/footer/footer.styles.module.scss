@@ -1,11 +1,15 @@
 .footer {
+    background: ghostwhite;
+    box-shadow: 0 -1px 5px rgba(black, .05);
     display: flex;
     flex-direction: column;
 
     &__row {
         display: flex;
         flex-direction: row;
+        align-items: center;
         justify-content: space-between;
+        padding: 16px;
     }
 
     &__controls {

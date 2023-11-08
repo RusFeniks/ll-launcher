@@ -1,0 +1,31 @@
+$button-color: gold;
+
+.update-button {
+    font-weight: bold;
+    text-transform: uppercase;
+    background: $button-color;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 1px 1px 4px rgba(black, .05);
+    width: 200px;
+    height: 60px;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color .25s;
+
+    &:hover {
+        background-color: lighten($button-color, 15%);
+    }
+
+    &:active {
+        background-color: darken($button-color, 15%);
+    }
+
+    &:disabled {
+        cursor: default;
+        background-color: desaturate(lighten($button-color, 25%), 25%);
+    }
+}
