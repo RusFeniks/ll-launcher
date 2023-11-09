@@ -37,10 +37,10 @@ export default function Header(props: HeaderProps) {
       <div className={style['header__brand']}>
         <Image
           className={style["header__icon"]}
-          src="icon32.png"
+          src="icon.svg"
           alt="Иконка проекта"
-          width={32}
-          height={32}
+          width={40}
+          height={44}
         />
         <div>
           <h1 className={style['header__title']}>Lost Lands</h1>
