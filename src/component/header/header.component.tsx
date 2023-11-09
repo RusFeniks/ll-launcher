@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import Image from "next/image";
+import Link from "next/link";
 import style from "./header.styles.module.scss";
 
 interface HeaderProps {
@@ -17,17 +18,17 @@ export default function Header(props: HeaderProps) {
     {
       id: 1,
       title: "Новости",
-      href: "#",
+      href: "/",
     },
     {
       id: 2,
       title: "Дополнения",
-      href: "#",
+      href: "/addons",
     },
     {
       id: 3,
       title: "Настройки",
-      href: "#",
+      href: "/settings",
     },
   ];
 
@@ -48,13 +49,13 @@ export default function Header(props: HeaderProps) {
       </div>
       <nav className={style["header__navigation-wrapper"]}>
         {navigationLinks.map((link) => (
-          <a
+          <Link
             key={link.id}
             className={style["header__navigation-link"]}
             href={link.href}
           >
             {link.title}
-          </a>
+          </Link>
         ))}
       </nav>
     </div>

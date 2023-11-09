@@ -1,0 +1,29 @@
+.home {
+    &__news-feed {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px 8px;
+    }
+
+    &__news-timestamp {
+        margin: 0;
+        background: gold;
+        border-radius: 8px;
+        padding: 4px 8px;
+        font-size: 12px;
+        font-weight: 500;
+        display: inline-block;
+    }
+
+    &__news-content {
+        margin: 0;
+        font-size: 14px;
+        padding: 4px;
+    }
+
+    &__news-error {
+        padding: 8px;
+        color: darkred;
+    }
+}
