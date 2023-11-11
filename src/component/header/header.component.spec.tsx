@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import Header from "./header.component";
 
-describe("Header", () => {
+describe("Компонент шапки", () => {
   it("должен содержать ожидаемые динамически-сгенерированные ссылки", () => {
     const { container } = render(<Header />);
 
