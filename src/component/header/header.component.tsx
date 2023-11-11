@@ -33,7 +33,7 @@ export default function Header(props: HeaderProps) {
   ];
 
   return (
-    <div className={classNames(style["header"], props.className)}>
+    <header className={classNames(style["header"], props.className)}>
       <div className={style['header__brand']}>
         <Image
           className={style["header__icon"]}
@@ -58,6 +58,6 @@ export default function Header(props: HeaderProps) {
           </Link>
         ))}
       </nav>
-    </div>
+    </header>
   );
 }

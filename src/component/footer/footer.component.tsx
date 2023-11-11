@@ -11,7 +11,7 @@ interface FooterProps {
 
 export default function Footer(props: FooterProps) {
   return (
-    <div className={classNames(style["footer"], props.className)}>
+    <footer className={classNames(style["footer"], props.className)}>
         <UpdateProgressBar/>
         <div className={style['footer__row']}>
             <Authorization/>
@@ -20,6 +20,6 @@ export default function Footer(props: FooterProps) {
                 <GameStartButton/>
             </div>
         </div>
-    </div>
+    </footer>
   );
 }
