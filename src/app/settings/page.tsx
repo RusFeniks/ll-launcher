@@ -1,58 +1,52 @@
 import styles from "./page.styles.module.scss";
 
+interface SettingsRowProps {
+  label: string;
+  children: any;
+}
+
+const SettingsRow = (props: SettingsRowProps) => (
+  <div className={styles["settings__row"]}>
+    <label>{props.label}</label>
+    <div className={styles["settings__input-group"]}>{props.children}</div>
+  </div>
+);
+
 export default function Settings() {
   return (
     <div className={styles["settings"]}>
       <div className={styles["settings__form"]}>
-        <div className={styles["settings__row"]}>
-          <label>Выделяемая оперативная память:</label>
-          <div className={styles["settings__input-group"]}>
-            <input type="number" className={styles["settings__input"]} />
-          </div>
-        </div>
+        <SettingsRow label="Выделяемая оперативная память:">
+          <input type="number" className={styles["settings__input"]} />
+        </SettingsRow>
 
-        <div className={styles["settings__row"]}>
-          <label>Путь до клиента игры:</label>
-          <div className={styles["settings__input-group"]}>
-            <input type="text" className={styles["settings__input"]} readOnly/>
-            <button className={styles["settings__button"]}>
-              Выбрать папку
-            </button>
-            <button className={styles["settings__button"]}>Сброс</button>
-          </div>
-        </div>
+        <SettingsRow label="Путь до клиента игры:">
+          <input type="text" className={styles["settings__input"]} readOnly />
+          <button className={styles["settings__button"]}>Выбрать папку</button>
+          <button className={styles["settings__button"]}>Сброс</button>
+        </SettingsRow>
 
-        <div className={styles["settings__row"]}>
-          <label>Путь до установленной Java:</label>
-          <div className={styles["settings__input-group"]}>
-            <input type="text" className={styles["settings__input"]} readOnly/>
-            <button className={styles["settings__button"]}>
-              Выбрать папку
-            </button>
-            <button className={styles["settings__button"]}>Сброс</button>
-          </div>
-        </div>
+        <SettingsRow label="Путь до установленной Java:">
+          <input type="text" className={styles["settings__input"]} readOnly />
+          <button className={styles["settings__button"]}>Выбрать папку</button>
+          <button className={styles["settings__button"]}>Сброс</button>
+        </SettingsRow>
 
-        <div className={styles["settings__row"]}>
-          <label>Параметры запуска:</label>
-          <div className={styles["settings__input-group"]}>
-            <input type="text" className={styles["settings__input"]} />
-          </div>
-        </div>
+        <SettingsRow label="Параметры запуска:">
+          <input type="text" className={styles["settings__input"]} />
+        </SettingsRow>
 
-        <div className={styles["settings__row"]}>
-          <label></label>
-          <div className={styles["settings__input-group"]}>
-            <button className={styles["settings__button"]}>Принудительно проверить обновления клиента</button>
-          </div>
-        </div>
+        <SettingsRow label="">
+          <button className={styles["settings__button"]}>
+            Принудительно проверить обновления клиента
+          </button>
+        </SettingsRow>
 
-        <div className={styles["settings__row"]}>
-          <label></label>
-          <div className={styles["settings__input-group"]}>
-            <button className={styles["settings__button"]}>Открыть папку пользовательских модов</button>
-          </div>
-        </div>
+        <SettingsRow label="">
+          <button className={styles["settings__button"]}>
+            Открыть папку пользовательских модов
+          </button>
+        </SettingsRow>
       </div>
     </div>
   );
