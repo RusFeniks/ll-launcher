@@ -34,7 +34,10 @@ export default async function Home() {
             <h3 className={style["home__news-timestamp"]}>
               {format(new Date(element.date), "dd.MM.yyyy")}
             </h3>
-            <p className={style["home__news-content"]}>{element.content}</p>
+            <p
+              className={style["home__news-content"]}
+              dangerouslySetInnerHTML={{ __html: element.content }}
+            ></p>
           </article>
         ))}
       </div>

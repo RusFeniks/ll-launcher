@@ -48,9 +48,38 @@ describe("Домашняя страница", () => {
     });
   });
 
+  it("должна отрисовать html контента, полученный с backend'а как html-элементы", async () => {
+    const returnedNews = [
+      {
+        id: 1,
+        date: "2023-06-19 13:42:09",
+        content: "Обычный текст. <strong>Жирный текст.</strong> Обычный текст.",
+      },
+    ];
+
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        json: () => Promise.resolve(returnedNews),
+      })
+    ) as jest.Mock;
+
+    const { container } = render(await Home());
+
+    const content = container.querySelector<HTMLElement>(
+      ".home__news-content"
+    )!;
+
+    expect(content.innerHTML).toBe(returnedNews[0].content);
+
+    const strongElement = content.querySelector<HTMLElement>("strong");
+
+    expect(strongElement).not.toBeNull();
+    expect(strongElement!.innerHTML).toBe("Жирный текст.");
+  });
+
   it("при возникновении ошибки, во время получения новостей, отобразить эту ошибку клиенту", async () => {
     global.fetch = jest.fn(() =>
-      Promise.reject(new Error('Текст ошибки'))
+      Promise.reject(new Error("Текст ошибки"))
     ) as jest.Mock;
 
     const { container } = render(await Home());
@@ -61,9 +90,11 @@ describe("Домашняя страница", () => {
 
     expect(news.length).toBe(0);
 
-    const error = screen.queryByText("Ошибка при получении новостей: Текст ошибки");
+    const error = screen.queryByText(
+      "Ошибка при получении новостей: Текст ошибки"
+    );
 
     expect(error).toBeInTheDocument();
-    expect(error).toHaveClass('home__news-error');
+    expect(error).toHaveClass("home__news-error");
   });
 });
