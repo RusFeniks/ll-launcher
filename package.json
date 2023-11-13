@@ -11,6 +11,7 @@
     "tests": "jest --watchAll"
   },
   "dependencies": {
+    "@tauri-apps/api": "^1.5.1",
     "classnames": "^2.3.2",
     "date-fns": "^2.30.0",
     "next": "14.0.1",
