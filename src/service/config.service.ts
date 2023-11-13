@@ -1,9 +1,8 @@
-"use client";
+'use client';
+export interface Config {
+  [key: string]: string;
 
-interface Config {
-  [key: string]: any;
-
-  ram: number;
+  ram: string;
   launchParams: string;
   gamePath: string;
   javaPath: string;
@@ -18,12 +17,12 @@ export default class ConfigService {
   /**
    * Получить объект конфигурации
    */
-  public getAll(): Config {
+  public async getAll(): Promise<Config> {
     if (this.cachedConfig) {
       return this.cachedConfig;
     }
 
-    const config = this.getFromLocalStorage() || this.getDefaults();
+    const config = this.getFromLocalStorage() || await this.getDefaults();
     this.cachedConfig = config;
 
     return this.cachedConfig;
@@ -32,8 +31,8 @@ export default class ConfigService {
   /**
    * Получить значение конфигурации по ключу
    */
-  public getByKey(key: string): any {
-    const config = this.getAll();
+  public async getByKey(key: string): Promise<any> {
+    const config = await this.getAll();
 
     return config[key];
   }
@@ -41,12 +40,26 @@ export default class ConfigService {
   /**
    * Сохранить значение конфигурации по ключу
    */
-  public setByKey(key: string, value: any): void {
-    const config = this.getAll();
+  public async setByKey(key: string, value: any): Promise<void> {
+    const config = await this.getAll();
 
     config[key] = value;
 
     this.saveToLocalStorage(config);
+  }
+
+  /**
+   * Получить конфигурацию по-умолчанию
+   */
+  public async getDefaults(): Promise<Config> {
+    const path = await import("@tauri-apps/api/path");
+
+    return {
+      ram: '2000',
+      gamePath: await path.appDataDir(),
+      javaPath: "javaw",
+      launchParams: '',
+    } as Config;
   }
 
   /**
@@ -72,17 +85,5 @@ export default class ConfigService {
 
     const configString = JSON.stringify(config);
     localStorage.setItem("config", configString);
-  }
-
-  /**
-   * Получить конфигурацию по-умолчанию
-   */
-  private getDefaults(): Config {
-    return {
-      ram: 3000,
-      launchParams: "",
-      gamePath: "%appdata%/.lost-lands",
-      javaPath: "javaw",
-    } as Config;
   }
 }
