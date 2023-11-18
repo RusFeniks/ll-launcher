@@ -2,7 +2,7 @@
 import AddonInfoComponent from "@/component/addons/addon-info/addon-info.component";
 import AddonsList from "@/component/addons/addons-list/addons-list.component";
 import Preloader from "@/component/shared/preloader/preloader.component";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styles from "./page.styles.module.scss";
 
 export interface AddonInfo {
@@ -26,13 +26,18 @@ async function getAddonsListFromBackend(): Promise<AddonInfo[]> {
 export default function Addons() {
   const [addonsList, setAddonsList] = useState<AddonInfo[]>([]);
   const [selectedAddon, setSelectedAddon] = useState<AddonInfo>();
-  const [addonsGettingError, setAddonsGettingError] = useState<string>();
+  const [addonsGettingError, setAddonsGettingError] = useState<string | null>(
+    null
+  );
 
-  useEffect(() => {
+  const updateAddonsList = useCallback(() => {
+    setAddonsGettingError(null);
     getAddonsListFromBackend()
       .then(setAddonsList)
       .catch((error) => setAddonsGettingError(error.message));
   }, []);
+
+  useEffect(updateAddonsList, []);
 
   return (
     <div className={styles["addons"]}>
@@ -49,6 +54,13 @@ export default function Addons() {
         {addonsGettingError && (
           <div className={styles["addons__error"]}>
             Ошибка получения: {addonsGettingError}
+            <br />
+            <span
+              className={styles["addons__refresh-list"]}
+              onClick={updateAddonsList}
+            >
+              Попробовать снова
+            </span>
           </div>
         )}
       </div>

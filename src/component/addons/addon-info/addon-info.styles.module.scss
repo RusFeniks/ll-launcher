@@ -1,22 +1,26 @@
 .addon-info {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+
   &__header {
     display: flex;
     flex-direction: row;
+    width: 100%;
+    gap: 4px;
+  }
+
+  &__image {
+    width: 140px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 4px;
   }
 
   &__header-content {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    padding: 8px 2px;
-  }
-
-  &__image {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    margin: 4px;
-    border-radius: 4px;
   }
 
   &__title {
@@ -26,28 +30,23 @@
     margin: 0;
   }
 
-  &__description {
-    margin: 0;
-    padding: 0 8px;
-  }
-
-  &__separator {
-    background: whitesmoke;
-    height: 1px;
-    margin-bottom: 8px;
-  }
-
   &__links {
     display: flex;
     flex-direction: row;
-    gap: 4px;
     padding: 0 2px;
+    gap: 4px;
+    margin-bottom: 4px;
   }
 
   &__guide-link, &__website-link {
     color: black;
     font-size: 12px;
     text-decoration: underline;
+    transition: color .25s;
+
+    &:hover {
+      color: goldenrod;
+    }
 
     &::after {
       background: url('/link-icon.svg');
@@ -64,13 +63,13 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 12px;
-    font-size: 14px;
+    padding: 8px 12px;
+    font-size: 12px;
+    line-height: 12px;
     border-radius: 4px;
     background: gold;
     border: none;
     font-weight: 500;
-    margin: 4px 0;
     cursor: pointer;
     transition: background-color .25s;
     text-transform: uppercase;
@@ -87,5 +86,16 @@
   &__install-icon {
     width: 16px;
     height: 16px;
+  }
+
+  &__separator {
+    background: whitesmoke;
+    height: 1px;
+    margin: 8px 0;
+  }
+
+  &__description {
+    margin: 0;
+    font-size: 12px;
   }
 }
