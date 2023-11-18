@@ -4,7 +4,7 @@ import { mockIPC } from "@tauri-apps/api/mocks";
 import { act, fireEvent, render } from "@testing-library/react";
 import Settings from "./page";
 
-jest.mock("@/service/settings/config.service");
+jest.mock("@/service/shared/config.service");
 
 describe("Страница настроек", () => {
   const configServiceGetAllMock = ConfigService.prototype.getAll as jest.Mock;
