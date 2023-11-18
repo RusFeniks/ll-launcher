@@ -1,86 +1,196 @@
 "use client";
-import { ChangeEvent, useContext } from "react";
+import Row from "@/component/settings/row/row.component";
+import { Config } from "@/service/shared/config.service";
+import {
+  ChangeEvent,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { ServiceContainer } from "../service.provider";
 import styles from "./page.styles.module.scss";
 
-interface SettingsRowProps {
-  label: string;
-  children: any;
-}
-
-const SettingsRow = (props: SettingsRowProps) => (
-  <div className={styles["settings__row"]}>
-    <label>{props.label}</label>
-    <div className={styles["settings__input-group"]}>{props.children}</div>
-  </div>
-);
+const JAVA_PATH = "javaPath";
+const GAME_PATH = "gamePath";
 
 export default function Settings() {
+  const [config, setConfig] = useState<Config>();
   const { configService } = useContext(ServiceContainer);
-  const config = configService.getAll();
 
-  function updateConfig(key: string, value: any) {
-    configService.setByKey(key, value);
-  }
+  useEffect(() => {
+    configService.getAll().then(setConfig);
+  }, []);
+
+  /**
+   * Изменение параметра по ключу через текстовое поле.
+   */
+  const updateConfigWhenInputChanged = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const [key, value] = [event.target.name, event.target.value];
+
+      configService.setByKey(key, value);
+
+      const newData = { [key]: value };
+      setConfig(Object.assign({}, config, newData));
+    },
+    [config]
+  );
+
+  /**
+   * Выбор пути к папке с игрой
+   */
+  const selectGamePath = useCallback(() => {
+    import("@tauri-apps/api/dialog")
+      .then((dialog) =>
+        dialog.open({
+          directory: true,
+          multiple: false,
+          defaultPath: config?.gamePath,
+        })
+      )
+      .then((newPath) => {
+        if (newPath) {
+          configService.setByKey(GAME_PATH, newPath);
+          setConfig(Object.assign({}, config, { gamePath: newPath } as Config));
+        }
+      });
+  }, [config]);
+
+  /**
+   * Сброс пути к папке с игрой
+   */
+  const resetGamePath = useCallback(() => {
+    configService.getDefaults().then((defaultConfig) => {
+      configService.setByKey(GAME_PATH, defaultConfig.gamePath);
+      setConfig(
+        Object.assign({}, config, {
+          gamePath: defaultConfig.gamePath,
+        } as Config)
+      );
+    });
+  }, [config]);
+
+  /**
+   * Выбор пути к исполняемому файлу Java
+   */
+  const selectJavaPath = useCallback(() => {
+    import("@tauri-apps/api/dialog")
+      .then((dialog) =>
+        dialog.open({
+          directory: false,
+          multiple: false,
+          defaultPath: config?.javaPath,
+        })
+      )
+      .then((newPath) => {
+        if (newPath) {
+          configService.setByKey(JAVA_PATH, newPath);
+          setConfig(Object.assign({}, config, { javaPath: newPath } as Config));
+        }
+      });
+  }, [config]);
+
+  /**
+   * Сброс пути к исполняемому файлу Java
+   */
+  const resetJavaPath = useCallback(() => {
+    configService.getDefaults().then((defaultConfig) => {
+      configService.setByKey(JAVA_PATH, defaultConfig.javaPath);
+      setConfig(
+        Object.assign({}, config, {
+          javaPath: defaultConfig.javaPath,
+        } as Config)
+      );
+    });
+  }, [config]);
 
   return (
     <div className={styles["settings"]}>
       <div className={styles["settings__form"]}>
-        <SettingsRow label="Выделяемая оперативная память:">
+        <Row label="Выделяемая оперативная память:">
           <input
+            name="ram"
             type="number"
+            defaultValue={config?.ram}
             className={styles["settings__input"]}
-            defaultValue={config.ram}
-            onChange={(event: ChangeEvent<HTMLInputElement>) => {
-              updateConfig("ram", Number(event.target.value));
-            }}
+            onChange={updateConfigWhenInputChanged}
           />
-        </SettingsRow>
+        </Row>
 
-        <SettingsRow label="Путь до клиента игры:">
+        <Row label="Путь до клиента игры:">
           <input
+            name="gamePath"
             type="text"
             className={styles["settings__input"]}
-            defaultValue={config.gamePath}
+            defaultValue={config?.gamePath}
             readOnly
           />
-          <button className={styles["settings__button"]}>Выбрать папку</button>
-          <button className={styles["settings__button"]}>Сброс</button>
-        </SettingsRow>
+          <button
+            name="selectGamePath"
+            type="button"
+            className={styles["settings__button"]}
+            onClick={selectGamePath}
+          >
+            Выбрать папку
+          </button>
+          <button
+            name="resetGamePath"
+            type="button"
+            className={styles["settings__button"]}
+            onClick={resetGamePath}
+          >
+            Сброс
+          </button>
+        </Row>
 
-        <SettingsRow label="Путь до установленной Java:">
+        <Row label="Путь до установленной Java:">
           <input
+            name="javaPath"
             type="text"
             className={styles["settings__input"]}
-            defaultValue={config.javaPath}
+            defaultValue={config?.javaPath}
             readOnly
           />
-          <button className={styles["settings__button"]}>Выбрать папку</button>
-          <button className={styles["settings__button"]}>Сброс</button>
-        </SettingsRow>
+          <button
+            name="selectJavaPath"
+            type="button"
+            className={styles["settings__button"]}
+            onClick={selectJavaPath}
+          >
+            Выбрать файл
+          </button>
+          <button
+            name="resetJavaPath"
+            type="button"
+            className={styles["settings__button"]}
+            onClick={resetJavaPath}
+          >
+            Сброс
+          </button>
+        </Row>
 
-        <SettingsRow label="Параметры запуска:">
+        <Row label="Параметры запуска:">
           <input
+            name="launchParams"
             type="text"
             className={styles["settings__input"]}
-            defaultValue={config.launchParams}
-            onChange={(event: ChangeEvent<HTMLInputElement>) => {
-              updateConfig("launchParams", event.target.value);
-            }}
+            defaultValue={config?.launchParams}
+            onChange={updateConfigWhenInputChanged}
           />
-        </SettingsRow>
+        </Row>
 
-        <SettingsRow label="">
+        <Row label="">
           <button className={styles["settings__button"]}>
             Принудительно проверить обновления клиента
           </button>
-        </SettingsRow>
+        </Row>
 
-        <SettingsRow label="">
+        <Row label="">
           <button className={styles["settings__button"]}>
             Открыть папку пользовательских модов
           </button>
-        </SettingsRow>
+        </Row>
       </div>
     </div>
   );

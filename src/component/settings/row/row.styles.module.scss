@@ -1,0 +1,13 @@
+.row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+
+  &__input-group {
+    width: 60%;
+    display: flex;
+    gap: 4px;
+    justify-content: flex-end;
+  }
+}
