@@ -1,5 +1,5 @@
-import Footer from '@/component/footer/footer.component';
-import Header from '@/component/header/header.component';
+import Footer from '@/component/shared/footer/footer.component';
+import Header from '@/component/shared/header/header.component';
 import classNames from 'classnames';
 import { Montserrat } from 'next/font/google';
 import style from './app.module.scss';
