@@ -1,0 +1,91 @@
+.addon-info {
+  &__header {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__header-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px 2px;
+  }
+
+  &__image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin: 4px;
+    border-radius: 4px;
+  }
+
+  &__title {
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  &__description {
+    margin: 0;
+    padding: 0 8px;
+  }
+
+  &__separator {
+    background: whitesmoke;
+    height: 1px;
+    margin-bottom: 8px;
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    padding: 0 2px;
+  }
+
+  &__guide-link, &__website-link {
+    color: black;
+    font-size: 12px;
+    text-decoration: underline;
+
+    &::after {
+      background: url('/link-icon.svg');
+      background-size: contain;
+      display: inline-block;
+      content: '';
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  &__install-button {
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    font-size: 14px;
+    border-radius: 4px;
+    background: gold;
+    border: none;
+    font-weight: 500;
+    margin: 4px 0;
+    cursor: pointer;
+    transition: background-color .25s;
+    text-transform: uppercase;
+
+    &:hover {
+      background: lighten(gold, 15%);
+    }
+
+    &:active {
+      background: darken(gold, 5%);
+    }
+  }
+
+  &__install-icon {
+    width: 16px;
+    height: 16px;
+  }
+}

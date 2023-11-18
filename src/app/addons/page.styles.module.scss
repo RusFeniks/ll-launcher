@@ -1,0 +1,26 @@
+.addons {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+
+  &__separator {
+    background: ghostwhite;
+    width: 4px;
+  }
+
+  &__error {
+    color: darkred;
+    padding: 4px;
+    font-size: 12px;
+  }
+
+  &__list {
+    flex: 1;
+    overflow: auto;
+  }
+
+  &__info {
+    flex: 2;
+    overflow: auto;
+  }
+}

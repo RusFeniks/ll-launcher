@@ -1,0 +1,25 @@
+.addons-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  &__row {
+    padding: 8px 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    background: rgba(whitesmoke, 0.25);
+    transition: background-color 0.25s;
+
+    &:hover {
+      background: rgba(whitesmoke, 0.95);
+    }
+
+    &--selected {
+      background: gold;
+      &:hover {
+        background: gold;
+      }
+    }
+  }
+}
