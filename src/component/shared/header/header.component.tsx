@@ -1,6 +1,9 @@
+'use client';
+
 import classNames from "classnames";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import style from "./header.styles.module.scss";
 
 interface HeaderProps {
@@ -32,9 +35,11 @@ export default function Header(props: HeaderProps) {
     },
   ];
 
+  const pathName = usePathname();
+
   return (
     <header className={classNames(style["header"], props.className)}>
-      <div className={style['header__brand']}>
+      <div className={style["header__brand"]}>
         <Image
           className={style["header__icon"]}
           src="icon.svg"
@@ -43,15 +48,21 @@ export default function Header(props: HeaderProps) {
           height={44}
         />
         <div>
-          <h1 className={style['header__title']}>Lost Lands</h1>
-          <p className={style['header__description']}>Сервер Minecraft на краю света</p>
+          <h1 className={style["header__title"]}>Lost Lands</h1>
+          <p className={style["header__description"]}>
+            Сервер Minecraft на краю света
+          </p>
         </div>
       </div>
       <nav className={style["header__navigation-wrapper"]}>
         {navigationLinks.map((link) => (
           <Link
             key={link.id}
-            className={style["header__navigation-link"]}
+            className={classNames(
+              style["header__navigation-link"],
+              pathName === link.href &&
+                style["header__navigation-link--current"]
+            )}
             href={link.href}
           >
             {link.title}

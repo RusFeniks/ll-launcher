@@ -51,5 +51,9 @@
     &:active {
       color: lighten(goldenrod, $amount: 25%);
     }
+
+    &--current {
+      color: goldenrod;
+    }
   }
 }
