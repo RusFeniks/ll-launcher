@@ -42,3 +42,11 @@ npm run tauri build
 ```
 
 > Собранные файлы лежат по пути: `src-tauri/target/release/bundle`
+
+## Запуск тестов Jest
+
+```
+npm run tests
+```
+
+> Также, можно запустить тесты для отдельного файла\папки, если использовать команду на подобии: `npm run tests ./srs/app/service`
