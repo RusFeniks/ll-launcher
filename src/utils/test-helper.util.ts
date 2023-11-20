@@ -25,3 +25,31 @@ export function queryById<T extends HTMLElement = HTMLElement>(
 ): T | null {
   return queryBy(container, `#${id}`);
 }
+
+export function queryAllBy<T extends HTMLElement = HTMLElement>(
+  container: HTMLElement,
+  selector: string
+): NodeListOf<T> {
+  return container.querySelectorAll<T>(selector);
+}
+
+export function queryAllByName<T extends HTMLElement = HTMLElement>(
+  container: HTMLElement,
+  name: string
+): NodeListOf<T> {
+  return queryAllBy(container, `[name="${name}"]`);
+}
+
+export function queryAllByClass<T extends HTMLElement = HTMLElement>(
+  container: HTMLElement,
+  className: string
+): NodeListOf<T> {
+  return queryAllBy(container, `.${className}`);
+}
+
+export function queryAllById<T extends HTMLElement = HTMLElement>(
+  container: HTMLElement,
+  id: string
+): NodeListOf<T> {
+  return queryAllBy(container, `#${id}`);
+}
