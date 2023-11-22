@@ -103,7 +103,7 @@ describe("Страница дополнений", () => {
     expect(global.fetch as jest.Mock).toHaveBeenCalledTimes(2);
   });
 
-  it("при клике на дополнение в списке, необходимо вывести его информацию", async () => {
+  it("при клике на дополнение с полностью заполненными полями в списке, необходимо вывести всю его информацию", async () => {
     const { container } = await act(() => render(<Addons />));
 
     const rows = queryAllByClass(container, "addon-row");
@@ -137,8 +137,20 @@ describe("Страница дополнений", () => {
       "src",
       addonsList[0].image!
     );
+  });
+
+  it("при клике на дополнение с минимально заполненными полями в списке, необходимо вывести его информацию", async () => {
+    const { container } = await act(() => render(<Addons />));
+
+    const rows = queryAllByClass(container, "addon-row");
+
+    expect(queryByClass(container, "addon-info")).not.toBeInTheDocument();
 
     await act(() => fireEvent.click(rows[4]));
+
+    const addonInfo = queryByClass(container, "addon-info");
+
+    expect(addonInfo).toBeInTheDocument();
 
     expect(addonInfo).toBeInTheDocument();
 
@@ -161,5 +173,31 @@ describe("Страница дополнений", () => {
     expect(
       queryByClass(addonInfo!, "addon-info__image")
     ).not.toBeInTheDocument();
+  });
+
+  it("при переключении между дополнениями в списке, менять информацию выводимую пользователю", async () => {
+    const { container } = await act(() => render(<Addons />));
+
+    const rows = queryAllByClass(container, "addon-row");
+
+    expect(queryByClass(container, "addon-info")).not.toBeInTheDocument();
+
+    await act(() => fireEvent.click(rows[0]));
+
+    const addonInfo = queryByClass(container, "addon-info");
+
+    expect(addonInfo).toBeInTheDocument();
+
+    expect(queryByClass(addonInfo!, "addon-info__title")).toContainHTML(
+      addonsList[0].title
+    );
+
+    await act(() => fireEvent.click(rows[4]));
+
+    expect(addonInfo).toBeInTheDocument();
+
+    expect(queryByClass(addonInfo!, "addon-info__title")).toContainHTML(
+      addonsList[4].title
+    );
   });
 });

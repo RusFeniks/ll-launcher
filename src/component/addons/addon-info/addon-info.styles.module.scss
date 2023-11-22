@@ -1,3 +1,5 @@
+@import "@/scss/buttons.scss";
+
 .addon-info {
   display: flex;
   flex-direction: column;
@@ -58,34 +60,26 @@
     }
   }
 
-  &__install-button {
-    user-select: none;
+  &__controls {
     display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 12px;
-    font-size: 12px;
-    line-height: 12px;
-    border-radius: 4px;
-    background: gold;
-    border: none;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color .25s;
-    text-transform: uppercase;
-
-    &:hover {
-      background: lighten(gold, 15%);
-    }
-
-    &:active {
-      background: darken(gold, 5%);
-    }
+    flex-direction: row;
+    gap: 4px;
   }
 
-  &__install-icon {
-    width: 16px;
-    height: 16px;
+  &__install-button, &__update-button {
+    @extend %button, %button--primary;
+    font-size: 12px;
+  }
+
+  &__uninstall-button {
+    @extend %button, %button--secondary;
+    font-size: 12px;
+  }
+
+  &__button-icon {
+    opacity: .75;
+    width: 14px;
+    height: 14px;
   }
 
   &__separator {

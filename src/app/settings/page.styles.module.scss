@@ -1,4 +1,5 @@
 @import '@/scss/input';
+@import '@/scss/buttons';
 
 .settings {
     padding: 12px;
@@ -10,36 +11,22 @@
     }
 
     &__input {
-        @extend .input;
+        @extend %input;
         flex: 1;
     }
 
     &__button {
-        text-transform: uppercase;
-        background: gold;
-        border: none;
+        @extend %button;
         border-radius: 8px;
-        box-shadow: 1px 1px 4px rgba(black, .05);
         font-size: 12px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        transition: background-color .25s;
-        padding: 0 16px;
         height: 40px;
 
-        &:hover {
-            background-color: lighten(gold, 15%);
+        &--primary {
+            @extend %button--primary;
         }
 
-        &:active {
-            background-color: darken(gold, 15%);
-        }
-
-        &:disabled {
-            cursor: default;
-            background-color: desaturate(lighten(gold, 25%), 25%);
+        &--secondary {
+            @extend %button--secondary;
         }
     }
 }

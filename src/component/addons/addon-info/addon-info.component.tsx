@@ -18,11 +18,39 @@ const AddonImage = (src: string) => (
 const InstallButton = () => (
   <button className={styles["addon-info__install-button"]}>
     <img
-      src="/install-icon.svg"
-      className={styles["addon-info__install-icon"]}
+      src="/icons/install.svg"
+      className={styles["addon-info__button-icon"]}
       draggable="false"
     ></img>
     Установить
+  </button>
+);
+
+/**
+ * Кнопка "Обновить"
+ */
+const UpdateButton = () => (
+  <button className={styles["addon-info__update-button"]} disabled>
+    <img
+      src="/icons/update.svg"
+      className={styles["addon-info__button-icon"]}
+      draggable="false"
+    ></img>
+    Обновить
+  </button>
+);
+
+/**
+ * Кнопка "Удалить"
+ */
+const UninstallButton = () => (
+  <button className={styles["addon-info__uninstall-button"]}>
+    <img
+      src="/icons/uninstall.svg"
+      className={styles["addon-info__button-icon"]}
+      draggable="false"
+    ></img>
+    Удалить
   </button>
 );
 
@@ -67,7 +95,9 @@ export default function AddonInfoComponent({ addon }: AddonInfoProps) {
             </div>
           )}
           <div className={styles["addon-info__controls"]}>
+            <UpdateButton />
             <InstallButton />
+            <UninstallButton />
           </div>
         </div>
       </div>

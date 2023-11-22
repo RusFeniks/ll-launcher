@@ -1,0 +1,54 @@
+%button {
+  padding: 8px 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  gap: 8px;
+  border-radius: 4px;
+  border: none;
+  transition: background-color 0.25s, box-shadow 0.25s;
+  text-transform: uppercase;
+  box-shadow: 1px 1px 4px rgba(black, 0.05);
+
+  &:hover {
+    box-shadow: 1px 1px 4px rgba(black, 0.1);
+  }
+
+  &:disabled {
+    cursor: default;
+  }
+
+  &--primary {
+    background: gold;
+
+    &:hover {
+      background: lighten(gold, 15%);
+    }
+
+    &:active {
+      background: darken(gold, 5%);
+    }
+
+    &:disabled {
+      background-color: desaturate(lighten(gold, 25%), 25%);
+    }
+  }
+
+  &--secondary {
+    background: whitesmoke;
+
+    &:hover {
+      background: lighten(whitesmoke, 10%);
+    }
+
+    &:active {
+      background: darken(whitesmoke, 5%);
+    }
+
+    &:disabled {
+      background-color: desaturate(lighten(whitesmoke, 25%), 25%);
+    }
+  }
+}

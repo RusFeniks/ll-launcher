@@ -1,6 +1,7 @@
 "use client";
 import Row from "@/component/settings/row/row.component";
 import { Config } from "@/service/shared/config.service";
+import classNames from "classnames";
 import {
   ChangeEvent,
   useCallback,
@@ -129,7 +130,10 @@ export default function Settings() {
           <button
             name="selectGamePath"
             type="button"
-            className={styles["settings__button"]}
+            className={classNames(
+              styles["settings__button"],
+              styles["settings__button--secondary"]
+            )}
             onClick={selectGamePath}
           >
             Выбрать папку
@@ -137,7 +141,10 @@ export default function Settings() {
           <button
             name="resetGamePath"
             type="button"
-            className={styles["settings__button"]}
+            className={classNames(
+              styles["settings__button"],
+              styles["settings__button--secondary"]
+            )}
             onClick={resetGamePath}
           >
             Сброс
@@ -155,7 +162,10 @@ export default function Settings() {
           <button
             name="selectJavaPath"
             type="button"
-            className={styles["settings__button"]}
+            className={classNames(
+              styles["settings__button"],
+              styles["settings__button--secondary"]
+            )}
             onClick={selectJavaPath}
           >
             Выбрать файл
@@ -163,7 +173,10 @@ export default function Settings() {
           <button
             name="resetJavaPath"
             type="button"
-            className={styles["settings__button"]}
+            className={classNames(
+              styles["settings__button"],
+              styles["settings__button--secondary"]
+            )}
             onClick={resetJavaPath}
           >
             Сброс
@@ -181,13 +194,23 @@ export default function Settings() {
         </Row>
 
         <Row label="">
-          <button className={styles["settings__button"]}>
+          <button
+            className={classNames(
+              styles["settings__button"],
+              styles["settings__button--secondary"]
+            )}
+          >
             Принудительно проверить обновления клиента
           </button>
         </Row>
 
         <Row label="">
-          <button className={styles["settings__button"]}>
+          <button
+            className={classNames(
+              styles["settings__button"],
+              styles["settings__button--secondary"]
+            )}
+          >
             Открыть папку пользовательских модов
           </button>
         </Row>
