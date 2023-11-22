@@ -1,6 +1,7 @@
+import AddonInfo from "@/models/addons/addon-info.interface";
 import { queryAllByClass, queryByClass } from "@/utils/test-helper.util";
 import { act, fireEvent, render } from "@testing-library/react";
-import Addons, { AddonInfo } from "./page";
+import Addons from "./page";
 
 describe("Страница дополнений", () => {
   const addonsList: AddonInfo[] = [

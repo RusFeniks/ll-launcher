@@ -1,4 +1,4 @@
-import { AddonInfo } from "@/app/addons/page";
+import AddonInfo from "@/models/addons/addon-info.interface";
 import classNames from "classnames";
 import styles from "./addon-row.styles.module.scss";
 

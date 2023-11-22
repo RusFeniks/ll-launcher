@@ -2,17 +2,9 @@
 import AddonInfoComponent from "@/component/addons/addon-info/addon-info.component";
 import AddonsList from "@/component/addons/addons-list/addons-list.component";
 import Preloader from "@/component/shared/preloader/preloader.component";
+import AddonInfo from "@/models/addons/addon-info.interface";
 import { useCallback, useEffect, useState } from "react";
 import styles from "./page.styles.module.scss";
-
-export interface AddonInfo {
-  id: number;
-  title: string;
-  description: string;
-  guideLink?: string;
-  image?: string;
-  website?: string;
-}
 
 /**
  * Получает список дополнений с backend сервера.

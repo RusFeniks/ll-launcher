@@ -1,4 +1,4 @@
-import { AddonInfo } from "@/app/addons/page";
+import AddonInfo from "@/models/addons/addon-info.interface";
 import styles from "./addon-info.styles.module.scss";
 
 interface AddonInfoProps {
