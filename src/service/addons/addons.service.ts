@@ -13,7 +13,7 @@ export default class AddonsService {
   }
 
   private async getAddonsFromApi(): Promise<AddonInfo[]> {
-    const apiUrl = `${process.env.API_URL}/addons`;
+    const apiUrl = "";
 
     return fetch(apiUrl)
       .then((response) => response.json())
