@@ -1,4 +1,6 @@
-'use client';
+"use client";
+import { path } from "@tauri-apps/api";
+
 export interface Config {
   [key: string]: string;
 
@@ -22,7 +24,7 @@ export default class ConfigService {
       return this.cachedConfig;
     }
 
-    const config = this.getFromLocalStorage() || await this.getDefaults();
+    const config = this.getFromLocalStorage() || (await this.getDefaults());
     this.cachedConfig = config;
 
     return this.cachedConfig;
@@ -52,13 +54,11 @@ export default class ConfigService {
    * Получить конфигурацию по-умолчанию
    */
   public async getDefaults(): Promise<Config> {
-    const path = await import("@tauri-apps/api/path");
-
     return {
-      ram: '2000',
+      ram: "2000",
       gamePath: await path.appDataDir(),
       javaPath: "javaw",
-      launchParams: '',
+      launchParams: "",
     } as Config;
   }
 

@@ -1,6 +1,7 @@
 "use client";
 import Row from "@/component/settings/row/row.component";
 import { Config } from "@/service/shared/config.service";
+import { open } from "@tauri-apps/plugin-dialog";
 import classNames from "classnames";
 import {
   ChangeEvent,
@@ -42,20 +43,15 @@ export default function Settings() {
    * Выбор пути к папке с игрой
    */
   const selectGamePath = useCallback(() => {
-    import("@tauri-apps/api/dialog")
-      .then((dialog) =>
-        dialog.open({
-          directory: true,
-          multiple: false,
-          defaultPath: config?.gamePath,
-        })
-      )
-      .then((newPath) => {
-        if (newPath) {
-          configService.setByKey(GAME_PATH, newPath);
-          setConfig(Object.assign({}, config, { gamePath: newPath } as Config));
-        }
-      });
+    open({
+      directory: true,
+      multiple: false,
+      defaultPath: config?.gamePath,
+    }).then((newPath) => {
+      if (!newPath) return;
+      configService.setByKey(GAME_PATH, newPath);
+      setConfig(Object.assign({}, config, { gamePath: newPath } as Config));
+    });
   }, [config]);
 
   /**
@@ -76,20 +72,15 @@ export default function Settings() {
    * Выбор пути к исполняемому файлу Java
    */
   const selectJavaPath = useCallback(() => {
-    import("@tauri-apps/api/dialog")
-      .then((dialog) =>
-        dialog.open({
-          directory: false,
-          multiple: false,
-          defaultPath: config?.javaPath,
-        })
-      )
-      .then((newPath) => {
-        if (newPath) {
-          configService.setByKey(JAVA_PATH, newPath);
-          setConfig(Object.assign({}, config, { javaPath: newPath } as Config));
-        }
-      });
+    open({
+      directory: false,
+      multiple: false,
+      defaultPath: config?.javaPath,
+    }).then((newPath) => {
+      if (newPath) return;
+      configService.setByKey(JAVA_PATH, newPath);
+      setConfig(Object.assign({}, config, { javaPath: newPath } as Config));
+    });
   }, [config]);
 
   /**
